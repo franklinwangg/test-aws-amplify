@@ -338,7 +338,7 @@ function Homepage() {
 
     const title = useState("");
     useEffect(() => {
-        fetch("https://<your-lambda-endpoint-url>")
+        fetch("https://uh7wd3zbrd7ea3jn7jg65laum40eupkn.lambda-url.us-west-1.on.aws/")
             .then((response) => response.json())
             .then((data) => {
                 // Assuming the Lambda function returns a JSON object with a 'title' key
@@ -355,3 +355,5 @@ function Homepage() {
         </div>
     );
 }
+
+export default Homepage;
