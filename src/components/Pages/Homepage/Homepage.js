@@ -336,7 +336,7 @@ import React, { useState, useContext, useEffect } from 'react';
 
 function Homepage() {
 
-    const title = useState("");
+    const [title, setTitle] = useState("");
     useEffect(() => {
         fetch("https://uh7wd3zbrd7ea3jn7jg65laum40eupkn.lambda-url.us-west-1.on.aws/")
             .then((response) => response.json())
@@ -346,10 +346,10 @@ function Homepage() {
             })
             .catch((error) => {
                 console.error("Error fetching data:", error);
-            });        
+            });
 
     }, [])
-    return(
+    return (
         <div>
             Title : {title}
         </div>
