@@ -332,28 +332,95 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import React, { useState, useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import "./Homepage.css";
+// import personIcon from "./personicon.png";
+import UserContext from '../../../context/UserContext';
+import HeaderBar from '../../Others/HeaderBar';
+
+
 
 function Homepage() {
 
-    const [title, setTitle] = useState("");
-    useEffect(() => {
-        fetch("https://uh7wd3zbrd7ea3jn7jg65laum40eupkn.lambda-url.us-west-1.on.aws/")
-            .then((response) => response.json())
-            .then((data) => {
-                // Assuming the Lambda function returns a JSON object with a 'title' key
-                setTitle(data.title);
-            })
-            .catch((error) => {
-                console.error("Error fetching data:", error);
-            });
+    const navigate = useNavigate();
 
-    }, [])
+    const [title, setTitle] = useState("");
+
+    const [posts, setPosts] = useState([]);
+    const [post1, setPost1] = useState(null);
+    const [post2, setPost2] = useState(null);
+    const [post3, setPost3] = useState(null);
+    const [post4, setPost4] = useState(null);
+    const [post5, setPost5] = useState(null);
+    const [post6, setPost6] = useState(null);
+    const [post7, setPost7] = useState(null);
+    const [post8, setPost8] = useState(null);
+    const [remainingPosts, setRemainingPosts] = useState([])
+
+    const { username, setUsername } = useContext(UserContext); // Access username and setUsername from context
+    const [showLogoutButton, setShowLogoutButton] = useState(false);
+    // let post1, post2, post3, post4, post5, post6;
+
+
+    // const [loggedIn, setLoggedIn] = useState([]);
+
+    useEffect(() => {
+        // fetch the data
+        // display it on "recent-boxing-news"
+
+        const fetchPosts = async () => {
+            try {
+                const response = await fetch("https://uh7wd3zbrd7ea3jn7jg65laum40eupkn.lambda-url.us-west-1.on.aws/");
+                
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                setTitle(data.title);
+            } catch (error) {
+                console.error("Error fetching posts:", error);
+            }
+        };
+        
+        fetchPosts();
+    }, []);
+
+    useEffect(() => {
+        // This effect runs every time the title changes
+        if (title) {
+            console.log("Title has been updated to:", title);
+            // You can add any additional logic here, such as displaying notifications or updating other state
+        }
+    }, [title]);
+
+
+    // get the last 6 posts
     return (
         <div>
-            Title : {title}
+
         </div>
     );
+
 }
 
 export default Homepage;

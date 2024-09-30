@@ -1,1 +1,1 @@
-try to make your frontend work with some random endpoint
+make the useEffect work out
