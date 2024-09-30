@@ -1,1 +1,1 @@
-figure out why it can't deploy it when it's in client folder
+try to make your frontend work with some random endpoint
