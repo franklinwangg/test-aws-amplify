@@ -417,7 +417,7 @@ function Homepage() {
     // get the last 6 posts
     return (
         <div>
-
+            Title: {title}
         </div>
     );
 
